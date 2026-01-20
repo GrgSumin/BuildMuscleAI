@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
+import { useChatStore } from "@/app/chatStore";
 
 const routes = [
   { name: "Chat", href: "/" },
@@ -11,13 +12,14 @@ const routes = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const userThread = useChatStore((s) => s.userThread);
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-white/70 backdrop-blur-md dark:bg-black/60">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4">
         {/* Logo */}
         <Link href="/" className="text-xl font-bold tracking-tight">
-          GymBroAI
+          GymBroAI 💪
         </Link>
 
         {/* Nav links */}
