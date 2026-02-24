@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
 
 export async function POST(req: Request) {
   const { message, threadId } = await req.json();
@@ -10,20 +9,12 @@ export async function POST(req: Request) {
       { status: 400 }
     );
   }
-  const openAi = new OpenAI();
 
-  try {
-    const threadMessage = await openAi.beta.threads.messages.create(threadId, {
-      role: "user",
-      content: message,
-    });
-    console.log("from open ai", threadMessage);
-    return NextResponse.json(
-      { message: threadMessage, success: true },
-      { status: 200 }
-    );
-  } catch (error) {
-    console.log(error);
-    return NextResponse.json({ error });
-  }
+  return NextResponse.json(
+    {
+      success: false,
+      error: "Legacy message API is deprecated. Use /api/chats/{chatId}/stream with llama3.2:latest.",
+    },
+    { status: 410 }
+  );
 }

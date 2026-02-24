@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import OpenAI from "openai";
 
 export async function POST(req: NextRequest) {
   const { threadId } = await req.json();
@@ -11,13 +10,11 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const openAI = new OpenAI();
-  try {
-    const threadMessage = await openAI.beta.threads.messages.list(threadId);
-    console.log("from open ai", threadMessage);
-    return NextResponse.json({ threadMessage, success: true }, { status: 200 });
-  } catch (error) {
-    console.log(error);
-    return NextResponse.json({ error: error }, { status: 401 });
-  }
+  return NextResponse.json(
+    {
+      success: false,
+      error: "Legacy message API is deprecated. Use /api/chats/{chatId}/messages.",
+    },
+    { status: 410 }
+  );
 }

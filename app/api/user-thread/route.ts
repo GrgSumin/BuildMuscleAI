@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
 
 export async function GET() {
   const user = await currentUser();
@@ -23,9 +22,9 @@ export async function GET() {
       return NextResponse.json({ userThread, success: true }, { status: 200 });
     }
 
-    //TODO: if doesnot create from open ai
-    const openAi = new OpenAI();
-    const thread = await openAi.beta.threads.create();
+    const thread = {
+      id: crypto.randomUUID(),
+    };
 
     //save it to database
     const newThreadUser = await prisma.userThread.create({
