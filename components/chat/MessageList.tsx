@@ -25,7 +25,7 @@ export function MessageList({ messages, streamDraft, loading, isStreaming }: Mes
   }, [messages, streamDraft]);
 
   if (loading) {
-    return <p className="p-4 text-sm text-emerald-100/70">Loading messages...</p>;
+    return <p className="p-4 text-sm text-slate-200/70">Loading messages…</p>;
   }
 
   if (!messages.length && !streamDraft) {
@@ -33,8 +33,8 @@ export function MessageList({ messages, streamDraft, loading, isStreaming }: Mes
       <div className="flex h-full items-center justify-center px-6 text-center">
         <div>
           <p className="text-4xl">🏋️</p>
-          <h1 className="mt-3 text-3xl font-semibold uppercase text-emerald-100">Build Momentum</h1>
-          <p className="mt-2 text-sm text-emerald-100/70">Ask for a plan, form cues, or recovery strategy.</p>
+          <h1 className="mt-3 text-3xl font-semibold uppercase text-orange-100">Build Momentum</h1>
+          <p className="mt-2 text-sm text-slate-200/70">Ask for a plan, form cues, or recovery strategy.</p>
         </div>
       </div>
     );
@@ -58,7 +58,7 @@ export function MessageList({ messages, streamDraft, loading, isStreaming }: Mes
         />
       ) : null}
 
-      {isStreaming ? <p className="px-2 text-xs text-emerald-100/70">Coach is typing...</p> : null}
+      {isStreaming ? <p className="px-2 text-xs text-orange-100/70">Coach is typing…</p> : null}
       <div ref={bottomRef} />
     </div>
   );

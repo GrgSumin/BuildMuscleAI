@@ -20,11 +20,11 @@ export function ChatSidebar({
   onSelectChat,
 }: ChatSidebarProps) {
   return (
-    <aside className="glass-panel flex h-full w-full max-w-80 flex-col rounded-4xl p-3">
+    <aside className="flex h-full w-full max-w-80 flex-col rounded-4xl bg-zinc-900 p-3 shadow-[0_16px_34px_rgba(0,0,0,0.38)]">
       <Button
         type="button"
         onClick={onCreateChat}
-        className="mb-3 h-11 justify-start gap-2 rounded-2xl bg-emerald-300 px-4 text-emerald-950 hover:bg-emerald-200 focus-visible:ring-emerald-300"
+        className="mb-3 h-11 justify-start gap-2 rounded-2xl bg-orange-300 px-4 text-zinc-950 hover:bg-orange-200 focus-visible:ring-orange-200"
       >
         <Plus aria-hidden="true" size={16} />
         New Chat
@@ -32,9 +32,9 @@ export function ChatSidebar({
 
       <div className="min-h-0 flex-1 space-y-2 overflow-y-auto pr-1">
         {loading ? (
-          <p className="px-3 py-6 text-sm text-emerald-100/70">Loading chats...</p>
+          <p className="px-3 py-6 text-sm text-slate-200/70">Loading chats…</p>
         ) : chats.length === 0 ? (
-          <p className="px-3 py-6 text-sm text-emerald-100/70">Start your first conversation.</p>
+          <p className="px-3 py-6 text-sm text-slate-200/70">Start your first conversation.</p>
         ) : (
           chats.map((chat) => {
             const isActive = activeChatId === chat.id;
@@ -44,16 +44,16 @@ export function ChatSidebar({
                 key={chat.id}
                 type="button"
                 onClick={() => onSelectChat(chat.id)}
-                className={`w-full rounded-2xl border px-3 py-2 text-left transition focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:outline-none ${
+                className={`w-full rounded-2xl px-3 py-2 text-left transition focus-visible:ring-2 focus-visible:ring-orange-200 focus-visible:outline-none ${
                   isActive
-                    ? "border-emerald-200/45 bg-emerald-200/20 text-emerald-50"
-                    : "border-emerald-200/10 bg-black/25 text-emerald-100 hover:border-emerald-200/30 hover:bg-emerald-200/10"
+                    ? "bg-[#24170f] text-orange-50"
+                    : "bg-zinc-950 text-slate-100 hover:bg-zinc-900"
                 }`}
               >
                 <p className="truncate text-sm font-semibold">{chat.title}</p>
                 <p
                   className={`truncate text-xs ${
-                    isActive ? "text-emerald-100/80" : "text-emerald-100/60"
+                    isActive ? "text-orange-100/85" : "text-slate-300/70"
                   }`}
                 >
                   {chat.preview || "No messages yet"}

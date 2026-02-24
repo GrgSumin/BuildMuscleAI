@@ -41,7 +41,7 @@ export function ChatComposer({ disabled, isStreaming, onSend, onStop }: ChatComp
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-3xl border border-emerald-300/20 bg-black/35 p-2 shadow-lg">
+    <form onSubmit={handleSubmit} className="rounded-3xl bg-zinc-900 p-2 shadow-[0_14px_28px_rgba(0,0,0,0.35)]">
       <label htmlFor="chat-input" className="sr-only">
         Message GymBroAI
       </label>
@@ -55,7 +55,7 @@ export function ChatComposer({ disabled, isStreaming, onSend, onStop }: ChatComp
           rows={1}
           placeholder="Ask for your next session plan…"
           autoComplete="off"
-          className="max-h-40 min-h-11 min-w-0 flex-1 resize-none bg-transparent px-3 py-2 text-sm text-emerald-50 placeholder:text-emerald-100/55 focus-visible:outline-none"
+          className="max-h-40 min-h-11 min-w-0 flex-1 resize-none bg-transparent px-3 py-2 text-sm text-slate-100 placeholder:text-slate-300/60 focus-visible:outline-none"
         />
 
         {isStreaming ? (
@@ -65,7 +65,7 @@ export function ChatComposer({ disabled, isStreaming, onSend, onStop }: ChatComp
             size="icon"
             onClick={onStop}
             aria-label="Stop response"
-            className="h-11 w-11 rounded-2xl border-emerald-200/30 bg-black/20 text-emerald-100 hover:bg-emerald-300/20"
+            className="h-11 w-11 rounded-2xl bg-zinc-950 text-slate-100 hover:bg-zinc-800"
           >
             <Square aria-hidden="true" size={16} />
           </Button>
@@ -74,7 +74,7 @@ export function ChatComposer({ disabled, isStreaming, onSend, onStop }: ChatComp
             type="submit"
             disabled={disabled || value.trim().length === 0}
             aria-label="Send message"
-            className="h-11 w-11 rounded-2xl bg-emerald-300 text-emerald-950 hover:bg-emerald-200"
+            className="h-11 w-11 rounded-2xl bg-orange-300 text-zinc-950 hover:bg-orange-200"
             size="icon"
           >
             <Send aria-hidden="true" size={16} />

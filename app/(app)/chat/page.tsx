@@ -326,9 +326,8 @@ export default function ChatPage() {
   );
 
   return (
-    <div className="relative h-[calc(100dvh-56px)] overflow-hidden p-3 sm:p-5">
-      <div className="pointer-events-none absolute inset-0 gym-grid opacity-35" />
-      <div className="relative mx-auto grid h-full max-w-7xl gap-3 lg:grid-cols-[300px_1fr]">
+    <div className="h-[calc(100dvh-56px)] bg-black p-3 sm:p-5">
+      <div className="mx-auto grid h-full max-w-7xl gap-3 lg:grid-cols-[300px_1fr]">
         <ChatSidebar
           chats={sortedChats}
           activeChatId={activeChatId}
@@ -337,9 +336,9 @@ export default function ChatPage() {
           onSelectChat={handleSelectChat}
         />
 
-        <section className="glass-panel flex min-h-0 flex-col rounded-4xl p-3">
-          <div className="mb-3 rounded-2xl border border-emerald-200/20 bg-emerald-200/8 px-4 py-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald-100">Your AI Performance Coach</p>
+        <section className="relative flex min-h-0 flex-col rounded-4xl bg-zinc-900 p-3 shadow-[0_16px_40px_rgba(0,0,0,0.38)]">
+          <div className="mb-3 rounded-2xl bg-zinc-950 px-4 py-2.5">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-orange-100">Coach Console</p>
             <div aria-live="polite">{error ? <p className="mt-1 text-sm text-rose-300">{error}</p> : null}</div>
           </div>
 

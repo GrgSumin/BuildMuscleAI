@@ -12,8 +12,8 @@ export function MessageBubble({ message }: MessageBubbleProps) {
       <article
         className={`max-w-[85%] rounded-3xl px-4 py-3 text-sm leading-6 sm:max-w-[75%] ${
           isUser
-            ? "bg-emerald-300 text-emerald-950"
-            : "border border-emerald-200/25 bg-black/30 text-emerald-50"
+            ? "bg-gradient-to-br from-orange-300 to-amber-300 text-zinc-950 shadow-[0_10px_24px_rgba(251,146,60,0.22)]"
+            : "bg-zinc-950 text-slate-100"
         }`}
       >
         <p className="whitespace-pre-wrap break-words">{message.content}</p>
