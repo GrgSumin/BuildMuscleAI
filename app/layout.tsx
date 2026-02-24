@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#030a07",
+  themeColor: "#000000",
 };
 
 export default function RootLayout({
@@ -39,7 +39,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" className="dark">
         <body
-          className={`${bodySans.variable} ${headingSans.variable} ${mono.variable} min-h-dvh bg-[#080706] text-zinc-100 antialiased`}
+          className={`${bodySans.variable} ${headingSans.variable} ${mono.variable} min-h-dvh bg-black text-zinc-100 antialiased`}
         >
           {children}
         </body>
