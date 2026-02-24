@@ -217,6 +217,8 @@ export default function ChatPage() {
       setIsStreaming(true);
       setError(null);
       setStreamDraft("");
+      let shouldRefreshMessages = false;
+      let wasStopped = false;
 
       try {
         const response = await fetch(`/api/chats/${activeChatId}/stream`, {
@@ -289,13 +291,23 @@ export default function ChatPage() {
 
         await loadMessages(activeChatId);
       } catch (sendError) {
+        shouldRefreshMessages = true;
+
         if (controller.signal.aborted) {
-          setError("Response stopped.");
+          wasStopped = true;
         } else {
           const message = sendError instanceof Error ? sendError.message : "Unable to send message.";
           setError(message);
         }
       } finally {
+        if (shouldRefreshMessages) {
+          await loadMessages(activeChatId);
+        }
+
+        if (wasStopped) {
+          setError("Response stopped.");
+        }
+
         abortControllerRef.current = null;
         setIsStreaming(false);
         setStreamDraft("");

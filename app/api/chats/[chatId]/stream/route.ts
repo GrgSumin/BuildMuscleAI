@@ -98,15 +98,16 @@ export async function POST(req: Request, { params }: Params) {
     data: { lastMessageAt: new Date() },
   });
 
-  const history = await prisma.chatMessage.findMany({
+  const recentHistory = await prisma.chatMessage.findMany({
     where: { chatId },
-    orderBy: { createdAt: "asc" },
+    orderBy: { createdAt: "desc" },
     take: 24,
     select: {
       role: true,
       content: true,
     },
   });
+  const history = recentHistory.reverse();
 
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
