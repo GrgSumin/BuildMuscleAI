@@ -15,14 +15,45 @@ datasource db {
 }
 
 model Assistant {
-id String @id @default(uuid())
-assistantId String @unique
-}
-model UserThread {
-id String @id @default(uuid())
-userId String @unique
-threadId String
-createdAt DateTime @default(now())
+  id          String @id @default(uuid())
+  assistantId String @unique
 }
 
-//login -> get userId -> getThreadId ->message
+model UserThread {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  threadId  String
+  createdAt DateTime @default(now())
+}
+
+model Chat {
+  id             String        @id @default(uuid())
+  userId         String
+  title          String
+  openaiThreadId String?       @unique
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  lastMessageAt  DateTime?
+  messages       ChatMessage[]
+
+  @@index([userId, updatedAt])
+  @@index([userId, lastMessageAt])
+}
+
+enum ChatRole {
+  user
+  assistant
+}
+
+model ChatMessage {
+  id              String   @id @default(uuid())
+  chatId           String
+  role             ChatRole
+  content          String
+  openaiMessageId  String?  @unique
+  openaiResponseId String?
+  createdAt        DateTime @default(now())
+  chat             Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+
+  @@index([chatId, createdAt])
+}
